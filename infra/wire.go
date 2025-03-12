@@ -1,4 +1,4 @@
-package transport
+package infra
 
 import (
 	"github.com/google/wire"

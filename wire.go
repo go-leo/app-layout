@@ -1,18 +1,18 @@
-package app_layout
+package main
 
 import (
-	"github.com/go-leo/app-layout/adapter"
-	"github.com/go-leo/app-layout/application"
-	"github.com/go-leo/app-layout/assembler"
+	"github.com/go-leo/app-layout/acl"
+	"github.com/go-leo/app-layout/handler"
+	"github.com/go-leo/app-layout/infra"
 	"github.com/go-leo/app-layout/model"
-	"github.com/go-leo/app-layout/transport"
+	"github.com/go-leo/app-layout/ui"
 	"github.com/google/wire"
 )
 
 var Provider = wire.NewSet(
-	transport.Provider,
-	application.Provider,
-	assembler.Provider,
-	adapter.Provider,
+	ui.Provider,
+	handler.Provider,
 	model.Provider,
+	acl.Provider,
+	infra.Provider,
 )

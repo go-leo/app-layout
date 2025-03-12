@@ -1,4 +1,4 @@
-package adapter
+package acl
 
 import (
 	"github.com/google/wire"

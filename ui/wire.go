@@ -1,4 +1,4 @@
-package assembler
+package ui
 
 import (
 	"github.com/google/wire"
