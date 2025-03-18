@@ -1,4 +1,4 @@
-package ui
+package cq
 
 import (
 	"github.com/google/wire"

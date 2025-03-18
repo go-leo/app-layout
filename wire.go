@@ -10,8 +10,8 @@ import (
 )
 
 var Provider = wire.NewSet(
-	ui.Provider,
-	handler.Provider,
+	cmd.Provider,
+	cq.Provider,
 	model.Provider,
 	acl.Provider,
 	infra.Provider,

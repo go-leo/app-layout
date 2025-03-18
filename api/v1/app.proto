@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option go_package = "github.com/go-leo/app-layout/api/v1;api";
+package api;
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+service User {
+  rpc CreateUser (CreateUserRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      post: "/v1/user"
+      body: "user"
+    };
+  }
+
+  rpc ListUser (ListUserRequest) returns (ListUserReply) {
+    option (google.api.http) = {
+      get: "/v1/user/list"
+    };
+  }
+}
+
+message UserInfo {
+  string name = 1;
+  int32 age = 2;
+}
+
+message CreateUserRequest {
+  UserInfo item = 1;
+}
+
+message ListUserRequest {
+  int32 page_size = 1;
+  int32 page_num = 2;
+}
+
+message ListUserReply {
+  repeated UserInfo list = 1;
+}
