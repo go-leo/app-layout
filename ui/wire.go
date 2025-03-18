@@ -1,4 +1,4 @@
-package acl
+package ui
 
 import (
 	"github.com/google/wire"

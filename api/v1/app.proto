@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/go-leo/app-layout/api/v1;api";
+option go_package = "github.com/go-leo/app-layout/api/v1;ui";
 package api;
 
 import "google/api/annotations.proto";
@@ -27,7 +27,7 @@ message UserInfo {
 }
 
 message CreateUserRequest {
-  UserInfo item = 1;
+  UserInfo user = 1;
 }
 
 message ListUserRequest {
