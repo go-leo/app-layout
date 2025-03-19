@@ -8,7 +8,6 @@ package main
 
 import (
 	"context"
-	"github.com/go-leo/app-layout/cq"
 	"github.com/go-leo/app-layout/domain"
 	"github.com/go-leo/app-layout/infra"
 	"github.com/go-leo/app-layout/service"
@@ -35,7 +34,7 @@ func InitHttpServer(ctx context.Context) (*httpserverx.Server, error) {
 
 // wire.go:
 
-var Provider = wire.NewSet(cq.Provider, domain.Provider, infra.Provider, service.Provider, ui.Provider, muxMiddlewares,
+var Provider = wire.NewSet(domain.Provider, infra.Provider, service.Provider, ui.Provider, muxMiddlewares,
 	newRouter,
 	NewHttpServer,
 	NewGrpcServer,

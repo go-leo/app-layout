@@ -4,7 +4,6 @@ package main
 
 import (
 	"context"
-	"github.com/go-leo/app-layout/cq"
 	"github.com/go-leo/app-layout/domain"
 	"github.com/go-leo/app-layout/infra"
 	"github.com/go-leo/app-layout/service"
@@ -16,7 +15,6 @@ import (
 )
 
 var Provider = wire.NewSet(
-	cq.Provider,
 	domain.Provider,
 	infra.Provider,
 	service.Provider,
