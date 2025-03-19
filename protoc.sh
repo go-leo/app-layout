@@ -35,13 +35,13 @@ echo "--- protoc generate start ---"
 protoc \
   --proto_path=. \
   --proto_path=../../third_party \
-  --go_out=ui \
-  --go_opt=module=qimao/leo/app/user/api/v1 \
-  --validate_out=ui \
-  --validate_opt=module=qimao/leo/app/user/api/v1,lang=go \
-  --go-grpc_out=ui \
-  --go-grpc_opt=module=qimao/leo/app/user/api/v1 \
-  --go-leo_out=ui \
-  --go-leo_opt=module=qimao/leo/app/user/api/v1 \
+  --go_out=. \
+  --go_opt=paths=source_relative \
+  --validate_out=. \
+  --validate_opt=paths=source_relative,lang=go \
+  --go-grpc_out=. \
+  --go-grpc_opt=paths=source_relative \
+  --go-leo_out=. \
+  --go-leo_opt=paths=source_relative \
   api/*/*.proto
 echo "--- protoc generate end ---"
