@@ -11,7 +11,6 @@ import (
 	"github.com/go-leo/leo/v3/serverx/grpcserverx"
 	"github.com/go-leo/leo/v3/serverx/httpserverx"
 	"github.com/google/wire"
-	"github.com/gorilla/mux"
 )
 
 var Provider = wire.NewSet(
@@ -21,8 +20,13 @@ var Provider = wire.NewSet(
 	ui.Provider,
 	muxMiddlewares,
 	newRouter,
-	NewHttpServer,
-	NewGrpcServer,
+	httpTransportOptions,
+	httpServerOptions,
+	httpServer,
+	grpcServerOptions,
+	grpcTransportOptions,
+	grpcServerxOptions,
+	grpcServer,
 )
 
 func InitGrpcServer(ctx context.Context) (*grpcserverx.Server, error) {
@@ -33,12 +37,4 @@ func InitGrpcServer(ctx context.Context) (*grpcserverx.Server, error) {
 func InitHttpServer(ctx context.Context) (*httpserverx.Server, error) {
 	wire.Build(Provider)
 	return nil, nil
-}
-
-func NewGrpcServer() *grpcserverx.Server {
-	return grpcserverx.NewServer(grpcServerOptions()...)
-}
-
-func NewHttpServer(router *mux.Router) *httpserverx.Server {
-	return httpserverx.NewServer(router, httpServerOptions()...)
 }
