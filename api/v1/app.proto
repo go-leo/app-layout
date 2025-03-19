@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/go-leo/app-layout/api/v1;ui";
+option go_package = "github.com/go-leo/app-layout/api/v1;api";
 package api;
 
 import "google/api/annotations.proto";
