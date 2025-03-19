@@ -15,20 +15,26 @@ import (
 	"github.com/go-leo/leo/v3/serverx/grpcserverx"
 	"github.com/go-leo/leo/v3/serverx/httpserverx"
 	"github.com/google/wire"
-	"github.com/gorilla/mux"
 )
 
 // Injectors from wire.go:
 
 func InitGrpcServer(ctx context.Context) (*grpcserverx.Server, error) {
-	server := NewGrpcServer()
+	userService := ui.NewUserService()
+	v := grpcTransportOptions(ctx)
+	v2 := grpcServerOptions()
+	v3 := grpcServerxOptions(ctx, v2)
+	server := grpcServer(ctx, userService, v, v3)
 	return server, nil
 }
 
 func InitHttpServer(ctx context.Context) (*httpserverx.Server, error) {
-	v := muxMiddlewares()
-	router := newRouter(v...)
-	server := NewHttpServer(router)
+	userService := ui.NewUserService()
+	v := muxMiddlewares(ctx)
+	v2 := httpTransportOptions(ctx)
+	router := newRouter(ctx, userService, v, v2)
+	v3 := httpServerOptions(ctx)
+	server := httpServer(ctx, router, v3)
 	return server, nil
 }
 
@@ -36,14 +42,11 @@ func InitHttpServer(ctx context.Context) (*httpserverx.Server, error) {
 
 var Provider = wire.NewSet(domain.Provider, infra.Provider, service.Provider, ui.Provider, muxMiddlewares,
 	newRouter,
-	NewHttpServer,
-	NewGrpcServer,
+	httpTransportOptions,
+	httpServerOptions,
+	httpServer,
+	grpcServerOptions,
+	grpcTransportOptions,
+	grpcServerxOptions,
+	grpcServer,
 )
-
-func NewGrpcServer() *grpcserverx.Server {
-	return grpcserverx.NewServer(grpcServerOptions()...)
-}
-
-func NewHttpServer(router *mux.Router) *httpserverx.Server {
-	return httpserverx.NewServer(router, httpServerOptions()...)
-}
