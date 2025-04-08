@@ -2,6 +2,7 @@
 app-layout 是一个应用服务的分层架构，主要分为：
 - cmd: 程序启动命令
 - api: 接口定义
+- configs: 配置定义
 - ui: 用户界面(可以简单理解为传统MVC的controller层)
 - service: 业务逻辑层，即use case,用来编排domain层的逻辑
 - domain: 领域模型层，领域模型为充血模型，有自己的方法，但方法逻辑都是"原子性"的，需要通过service层来编排
@@ -22,6 +23,11 @@ app-layout 是一个应用服务的分层架构，主要分为：
 │   ├── main.go
 │   ├── wire.go
 │   └── wire_gen.go
+├── configs
+│   ├── config.pb.go
+│   ├── config.pb.validate.go
+│   ├── config.proto
+│   └── config_leo.config.pb.go
 ├── domain
 │   └── wire.go
 ├── go.mod
