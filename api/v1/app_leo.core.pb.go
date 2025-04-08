@@ -24,15 +24,6 @@ type UserService interface {
 	ListUser(ctx context.Context, request *ListUserRequest) (*ListUserReply, error)
 }
 
-type (
-	UserService_CreateUser_Handler interface {
-		Handle(ctx context.Context, request *CreateUserRequest) (*emptypb.Empty, error)
-	}
-	UserService_ListUser_Handler interface {
-		Handle(ctx context.Context, request *ListUserRequest) (*ListUserReply, error)
-	}
-)
-
 // UserServerEndpoints is server endpoints
 type UserServerEndpoints interface {
 	CreateUser(ctx context.Context) endpoint.Endpoint

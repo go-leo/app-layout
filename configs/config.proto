@@ -1,0 +1,19 @@
+syntax = "proto3";
+package configs;
+option go_package = "github.com/go-leo/app-layout/configs;configs";
+
+import "leo/config/annotations.proto";
+
+message Config {
+  option (leo.config.enable) = true;
+  GRPC grpc = 1;
+  HTTP http = 2;
+}
+
+message GRPC {
+  int32 port = 1;
+}
+
+message HTTP {
+  int32 port = 1;
+}
